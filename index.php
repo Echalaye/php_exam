@@ -7,5 +7,5 @@ $result = $mysqli->query("SELECT name FROM article"); // On utilise l'instance c
 $hello = "World";
 ?>
 <h1>Hello <?php echo $hello ?> !</h1> 
-<?php echo $result ?>
 <a href="vente.php" role="button">Vente</a>
+<a href="login.php" role="button">Login / Register</a>
