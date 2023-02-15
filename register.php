@@ -9,10 +9,12 @@
         if($result->num_rows == 0){
             $result =  $mysqli->query("SELECT mdp FROM user WHERE username = '$addmail'");
             if($result->num_rows == 0){
+                $pwd = password_hash($pwd, PASSWORD_BCRYPT);
                 $mysqli->query("INSERT INTO user(`username`, `mdp`, `adresseMail`,`solde`,`role`) VALUES ('$name', '$pwd', '$addmail', 0, 'basiqueUser')");
                 $cookie_name = "pwd";
                 $cookie_value = $pwd;
-                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "index.php");
+                header("Location: http://localhost/php_exam/");
             }else{
                 $error = "This mail adress already exist";
             }

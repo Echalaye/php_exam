@@ -5,10 +5,12 @@
         $addmail = $_POST["addEmail"];
         $result = $mysqli->query("SELECT mdp FROM user WHERE adresseMail = '$addmail'");
         if($result->num_rows != 0){
-            if($result == $_POST["motDePasse"]){
+            $tab = $result->fetch_assoc();
+            if(password_verify($_POST["motDePasse"], $tab["mdp"])){
                 $cookie_name = "pwd";
-                $cookie_value = $result;
-                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+                $cookie_value = $tab["mdp"];
+                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "index.php");
+                header("Location: http://localhost/php_exam/");
             }else{
                 $error = "Wrong Password";
             }
