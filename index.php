@@ -6,15 +6,17 @@ if(isset($_COOKIE["pwd"])){
     $cookpass = $_COOKIE["pwd"];
     $trypwd = $mysqli->query("SELECT `mdp` FROM user WHERE `mdp` = '$cookpass'");
     if($trypwd->num_rows == 0){
-        header("Location: http://localhost/php_exam/indexNoCo.php");
+        header("Location: http://localhost/php_exam/indexGuest.php");
     }
 }else{
-    header("Location: http://localhost/php_exam/indexNoCo.php");
+    header("Location: http://localhost/php_exam/indexGuest.php");
 }
 $result = $mysqli->query("SELECT name FROM article"); // On utilise l'instance créée pour faire une requête bidon
+$UserAccount = $mysqli->query("SELECT username FROM user WHERE mdp = '$cookpass'");
+$nameConnected = $UserAccount->fetch_assoc();
 $hello = "World";
 ?>
 <h1>Hello <?php echo $hello ?> !</h1> 
-
+<?php echo $nameConnected["username"]?>
 <a href="vente.php" role="button">Vente</a>
 <a href="disconnect.php" role="button">Disconnect</a>
