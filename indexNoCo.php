@@ -7,5 +7,4 @@ $hello = "World";
 ?>
 <h1>Hello <?php echo $hello ?> !</h1> 
 
-<a href="login.php" role="button">Vente</a>
 <a href="login.php" role="button">Login / Register</a>

@@ -4,10 +4,12 @@ $mysqli = new mysqli("localhost", "root", "", "php_exam_db"); // Connexion à la
 // si vous avez une erreur ici, remplacez le deuxième "root" par une string vide
 if(isset($_COOKIE["pwd"])){
     $cookpass = $_COOKIE["pwd"];
-    $trypwd = $mysqli->query("SELECT mdp FROM user WHERE mdp = $cookpass");
+    $trypwd = $mysqli->query("SELECT `mdp` FROM user WHERE `mdp` = '$cookpass'");
     if($trypwd->num_rows == 0){
-        header("Location: http://localhost/php_exam/");
+        header("Location: http://localhost/php_exam/indexNoCo.php");
     }
+}else{
+    header("Location: http://localhost/php_exam/indexNoCo.php");
 }
 $result = $mysqli->query("SELECT name FROM article"); // On utilise l'instance créée pour faire une requête bidon
 $hello = "World";
