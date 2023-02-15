@@ -8,7 +8,16 @@
         $stk = $_POST["Stock"];
         $date = date('d/m/Y h:i:s', time());
         $price = floatval($price);
-        $mysqli->query("INSERT INTO article(`name`, `description`, `prix`,`datePublie`,`img`) VALUES ('$nameart', '$desc', '$price', '$date', '$img')");
+        $cookieValue = $_COOKIE["pwd"];
+        $Infouser = $mysqli->query("SELECT id FROM user WHERE `mdp` = '$cookieValue'");
+        $userId = $Infouser->fetch_assoc();
+        $userId = $userId["id"];
+        $mysqli->query("INSERT INTO article(`name`, `description`, `prix`,`datePublie`, idAuteur , `img`) VALUES ('$nameart', '$desc', '$price', '$date', '$userId', '$img')");
+        $ArticleInfo = $mysqli->query("SELECT id FROM article WHERE description = '$desc'AND prix = '$price' AND idAuteur = '$userId'");
+        $idart = $ArticleInfo->fetch_assoc();
+        $idart = $idart["id"];
+        $mysqli->query("INSERT INTO stock(`idArticle`, `stock`) VALUES ('$idart', '$stk')");
+        header("Location: http://localhost/php_exam/");
     }else{
         $nameart = "";
         $img = "";
