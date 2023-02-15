@@ -17,14 +17,17 @@ CREATE TABLE
         `prix` FLOAT,
         `datePublie` TEXT,
         `idAuteur` INTEGER,
-        `img` TEXT
+        `img` TEXT,
+        FOREIGN KEY (`idAuteur`) REFERENCES `user` (`id`)
     );
 
 CREATE TABLE
     `cart` (
         `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
         `idUser` INTEGER,
-        `idArticle` INTEGER
+        `idArticle` INTEGER,
+        FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
+        FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`)
     );
 
 CREATE TABLE
@@ -35,32 +38,14 @@ CREATE TABLE
         `price` FLOAT,
         `addInvoice` TEXT,
         `villeInvoice` TEXT,
-        `postaleInvoice` INTEGER
+        `postaleInvoice` INTEGER,
+        FOREIGN KEY (`idUser`) REFERENCES `user` (`id`)
     );
 
 CREATE TABLE
     `stock` (
         `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
         `idArticle` INTEGER,
-        `stock` INTEGER
+        `stock` INTEGER,
+        FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`)
     );
-
-ALTER TABLE `article`
-ADD
-    FOREIGN KEY (`idAuteur`) REFERENCES `user` (`id`);
-
-ALTER TABLE `cart`
-ADD
-    FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
-
-ALTER TABLE `cart`
-ADD
-    FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`);
-
-ALTER TABLE `invoice`
-ADD
-    FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
-
-ALTER TABLE `stock`
-ADD
-    FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`);
