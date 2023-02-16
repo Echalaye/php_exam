@@ -11,14 +11,12 @@ if(isset($_COOKIE["pwd"])){
 }else{
     header("Location: http://localhost/php_exam/indexGuest.php");
 }
-$infoArticle = $mysqli->query("SELECT * FROM article"); // On utilise l'instance créée pour faire une requête bidon
-$infoArticle = $infoArticle->fetch_assoc();
 $UserAccount = $mysqli->query("SELECT username, pdp FROM user WHERE mdp = '$cookpass'");
 $userConnected = $UserAccount->fetch_assoc();
 $hello = "World";
 ?>
-<h1>Hello <?php echo $hello ?> !</h1>
-<a href="account.php"?id=<?php echo $userConnected['username']; ?>> 
+
+<a href="account.php?username=<?php echo $userConnected['username']; ?>"> 
 <a><?php echo $userConnected["username"]?></a>
 <br>
 <img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
@@ -27,7 +25,7 @@ $hello = "World";
 <a href="disconnect.php" role="button">Disconnect</a>
 
 <?php
-$infoArticles = $mysqli->query("SELECT * FROM article");
+$infoArticles = $mysqli->query("SELECT * FROM article ORDER BY datePublie DESC");
 while ($infoArticle = $infoArticles->fetch_assoc()) {
     ?>
     <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
