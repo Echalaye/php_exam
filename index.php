@@ -13,22 +13,30 @@ if(isset($_COOKIE["pwd"])){
 }
 $infoArticle = $mysqli->query("SELECT * FROM article"); // On utilise l'instance créée pour faire une requête bidon
 $infoArticle = $infoArticle->fetch_assoc();
-$UserAccount = $mysqli->query("SELECT username FROM user WHERE mdp = '$cookpass'");
-$nameConnected = $UserAccount->fetch_assoc();
+$UserAccount = $mysqli->query("SELECT username, pdp FROM user WHERE mdp = '$cookpass'");
+$userConnected = $UserAccount->fetch_assoc();
 $hello = "World";
 ?>
-<h1>Hello <?php echo $hello ?> !</h1> 
-<a><?php echo $nameConnected["username"]?></a>
-<a href="vente.php" role="button">Vente</a>
+<h1>Hello <?php echo $hello ?> !</h1>
+<a href="account.php"?id=<?php echo $userConnected['username']; ?>> 
+<a><?php echo $userConnected["username"]?></a>
+<br>
+<img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
+<a>
+<a href="sell.php" role="button">Vente</a>
 <a href="disconnect.php" role="button">Disconnect</a>
 
+<?php
+$infoArticles = $mysqli->query("SELECT * FROM article");
+while ($infoArticle = $infoArticles->fetch_assoc()) {
+    ?>
+    <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
+      <h3><?php echo $infoArticle['name']; ?></h3>
+      <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
+    </a>
+    <?php
+}
+?>
 
-<a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
-
-  <h3><?php echo $infoArticle['name']; ?></h3>
-  <img src="<?php echo $infoArticle['img']; ?>" alt="No_image">
-
-
-</a>
 
 
