@@ -14,8 +14,8 @@ if(isset($_COOKIE["pwd"])){
 ?>
 
 <?php
-if(isset($_GET["username"])){
-    $nameTargetAccount = $_GET["username"];
+if(isset($_GET["name"])){
+    $nameTargetAccount = $_GET["name"];
     $pwdCompte = $mysqli->query("SELECT mdp FROM user WHERE username = '$nameTargetAccount'");
     if($pwdCompte->fetch_assoc() == $cookpass){
         $accountInfo = $mysqli->query("SELECT * FROM user WHERE mdp = $cookpass");

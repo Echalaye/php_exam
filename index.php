@@ -16,11 +16,10 @@ $userConnected = $UserAccount->fetch_assoc();
 $hello = "World";
 ?>
 
-<a href="account.php?username=<?php echo $userConnected['username']; ?>"> 
-<a><?php echo $userConnected["username"]?></a>
-<br>
-<img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
-<a>
+<a href="account.php?name=<?php echo $userConnected['username']; ?>"> 
+    <p><?php echo $userConnected["username"]?></p>
+    <img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
+</a>
 <a href="sell.php" role="button">Vente</a>
 <a href="disconnect.php" role="button">Disconnect</a>
 
