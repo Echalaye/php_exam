@@ -29,7 +29,9 @@ while ($infoArticle = $infoArticles->fetch_assoc()) {
     ?>
     <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
       <h3><?php echo $infoArticle['name']; ?></h3>
+      <p><?php echo $infoArticle['prix'], "€"; ?></p>
       <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
+
     </a>
     <?php
 }

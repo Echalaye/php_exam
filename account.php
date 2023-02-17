@@ -17,11 +17,50 @@ if(isset($_COOKIE["pwd"])){
 if(isset($_GET["name"])){
     $nameTargetAccount = $_GET["name"];
     $pwdCompte = $mysqli->query("SELECT mdp FROM user WHERE username = '$nameTargetAccount'");
-    if($pwdCompte->fetch_assoc() == $cookpass){
-        $accountInfo = $mysqli->query("SELECT * FROM user WHERE mdp = $cookpass");
+    $pwdCompte = $pwdCompte->fetch_assoc();
+    if($pwdCompte["mdp"] == $cookpass){
+        $accountInfo = $mysqli->query("SELECT * FROM user WHERE mdp = '$cookpass'");
         $accountId = $accountInfo->fetch_assoc();
         $id = $accountId["id"];
-        $articleInfo = $mysqli->query("SELECT * FROM article WHERE idAuteur = '$id'");
-        $accountInvoice = $mysqli->query("SELECT * FROM invoice WHERE idUser = '$id'");
+        // $accountInvoice = $mysqli->query("SELECT * FROM invoice WHERE idUser = '$id'");
+        ?>
+        <div>
+            <p><?php echo $accountId["username"]?></p>
+            <img src="<?php echo $accountId["pdp"]?>" width="5%" height="10%" alt="No_pdp">
+        </div>
+
+        <a href="addMoneyToSolde.php?id=<?php echo $id; ?>">
+            <p><?php echo $accountId["solde"], "€"?> augmenter votre solde</p>
+
+        </a>
+
+        <a href="changeUserInfo.php?id=<?php echo $id; ?>">
+            <p>change your password</p>
+            <p>change your email</p>
+            <p>change your profile picture</p>
+        </a>
+
+        <a href="myInvoice.php?id=<?php echo $id; ?>">
+            <p>Voir mes facture</p>
+        </a>
+
+        <?php
+        $infoArticles = $mysqli->query("SELECT * FROM article WHERE idAuteur = '$id' ORDER BY datePublie DESC");
+        while ($infoArticle = $infoArticles->fetch_assoc()) {
+            ?>
+            <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
+            <h3><?php echo $infoArticle['name']; ?></h3>
+            <p><?php echo $infoArticle['prix'], "€"; ?></p>
+            <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
+            </a>
+            <?php
+        }
+        ?>
+<?Php    
+    }else{
+
+?>
+<?php
     }
 }
+?>
