@@ -37,7 +37,7 @@ while ($infoArticle = $infoArticles->fetch_assoc()) {
             <img src="<?php echo $infoUser["pdp"]?>" width="3%" height="5%" alt="No_pdp">
         </a>
     </div>
-    <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
+    <a href="detail.php?id=<?php echo $infoArticle['id']; ?>">
       <h3><?php echo $infoArticle['name']; ?></h3>
       <p><?php echo $infoArticle['prix'], "€"; ?></p>
       <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
