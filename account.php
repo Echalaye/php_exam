@@ -34,7 +34,7 @@ if(isset($_GET["name"])){
 
         </a>
 
-        <a href="changeUserInfo.php?id=<?php echo $id; ?>">
+        <a href="changeUserInfo.php?name=<?php echo $accountId["username"]; ?>">
             <p>change your password</p>
             <p>change your email</p>
             <p>change your profile picture</p>
@@ -94,5 +94,7 @@ if(isset($_GET["name"])){
         ?>
 <?php
     }
+}else{
+    header("Location: http://localhost/php_exam/index.php");
 }
 ?>

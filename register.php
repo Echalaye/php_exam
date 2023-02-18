@@ -57,7 +57,7 @@
         $pwd =  $_POST["motDePasse"];
         $result = $mysqli->query("SELECT mdp FROM user WHERE username = '$name'");
         if($result->num_rows == 0){
-            $result =  $mysqli->query("SELECT mdp FROM user WHERE username = '$addmail'");
+            $result =  $mysqli->query("SELECT mdp FROM user WHERE adresseMail = '$addmail'");
             if($result->num_rows == 0){
                 $pwd = password_hash($pwd, PASSWORD_BCRYPT);
                 $mysqli->query("INSERT INTO user(`username`, `mdp`, `adresseMail`,`solde`, pdp, `role`) VALUES ('$name', '$pwd', '$addmail', 0, '$pathIMG','basiqueUser')");
