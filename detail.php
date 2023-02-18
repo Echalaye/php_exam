@@ -22,10 +22,20 @@ if(isset($_GET["id"])){
     $id = $infoArticle["idAuteur"];
     $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");
     $infoUser = $infoUser->fetch_assoc();
+    if($accountInfo['id'] == $id){
+    ?>
+    <a href="edit.php?id=<?php echo $infoArticle['id']; ?>">
+        <p>Edit Article</p>
+    </a>   
+<?php
+    }else{
     ?>
     <a href="addToCart.php?id=<?php echo $infoArticle['id']; ?>">
         <p>Add to cart</p>
     </a>
+    <?php
+    }
+    ?>
     <div >
         <a href="account.php?name=<?php echo $infoUser['username']; ?>">
             <p><?php echo $infoUser["username"]?></p>
@@ -41,7 +51,7 @@ if(isset($_GET["id"])){
     </div>  
     <?php
 }else{
-    header("Location: http://localhost/php_exam/indexGuest.php");
+    header("Location: http://localhost/php_exam/index.php");
 }
 
 ?>
