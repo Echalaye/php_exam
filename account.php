@@ -46,8 +46,14 @@ if(isset($_GET["name"])){
 
         <?php
         $infoArticles = $mysqli->query("SELECT * FROM article WHERE idAuteur = '$id' ORDER BY datePublie DESC");
+        $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");
+        $infoUser = $infoUser->fetch_assoc();
         while ($infoArticle = $infoArticles->fetch_assoc()) {
             ?>
+            <div>
+                <p><?php echo $infoUser["username"]?></p>
+                <img src="<?php echo $infoUser["pdp"]?>" width="3%" height="5%" alt="No_pdp">
+            </div>
             <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
             <h3><?php echo $infoArticle['name']; ?></h3>
             <p><?php echo $infoArticle['prix'], "€"; ?></p>
@@ -58,8 +64,34 @@ if(isset($_GET["name"])){
         ?>
 <?Php    
     }else{
-
+      
+        $accountInfo = $mysqli->query("SELECT * FROM user WHERE username = '$nameTargetAccount'");
+        $accountId = $accountInfo->fetch_assoc();  
 ?>
+        <div>
+            <p><?php echo $accountId["username"]?></p>
+            <img src="<?php echo $accountId["pdp"]?>" width="3%" height="5%" alt="No_pdp">
+        </div>
+
+        <?php
+        $id = $accountId['id'];
+        $infoArticles = $mysqli->query("SELECT * FROM article WHERE idAuteur = '$id' ORDER BY datePublie DESC");
+        $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");
+        $infoUser = $infoUser->fetch_assoc();
+        while ($infoArticle = $infoArticles->fetch_assoc()) {
+            ?>
+            <div>
+                <p><?php echo $infoUser["username"]?></p>
+                <img src="<?php echo $infoUser["pdp"]?>" width="5%" height="10%" alt="No_pdp">
+            </div>
+            <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
+            <h3><?php echo $infoArticle['name']; ?></h3>
+            <p><?php echo $infoArticle['prix'], "€"; ?></p>
+            <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
+            </a>
+            <?php
+        }
+        ?>
 <?php
     }
 }

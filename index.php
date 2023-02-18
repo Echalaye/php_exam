@@ -25,8 +25,18 @@ $hello = "World";
 
 <?php
 $infoArticles = $mysqli->query("SELECT * FROM article ORDER BY datePublie DESC");
+
 while ($infoArticle = $infoArticles->fetch_assoc()) {
+    $id = $infoArticle["idAuteur"];
+    $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");
+    $infoUser = $infoUser->fetch_assoc();
     ?>
+    <div >
+        <a href="account.php?name=<?php echo $infoUser['username']; ?>">
+            <p><?php echo $infoUser["username"]?></p>
+            <img src="<?php echo $infoUser["pdp"]?>" width="3%" height="5%" alt="No_pdp">
+        </a>
+    </div>
     <a href="detail.php?id=<?php echo $infoArticle['id']; ?>&name=<?php echo $infoArticle['name']; ?>">
       <h3><?php echo $infoArticle['name']; ?></h3>
       <p><?php echo $infoArticle['prix'], "€"; ?></p>
