@@ -13,4 +13,21 @@ if(isset($_COOKIE["pwd"])){
     header("Location: http://localhost/php_exam/indexGuest.php");
 }
 ?>
-
+<?php
+    if(isset($_GET['id'])){
+        $articleId = $_GET['id'];
+        $userId = $accountInfo['id'];
+        $infoPanier = $mysqli->query("SELECT * FROM cart WHERE idArticle = '$articleId'");
+        if($infoPanier->num_rows == 0){
+            $mysqli->query("INSERT INTO cart(idUser, idArticle) VALUES ('$userId','$articleId')");
+            header("Location: http://localhost/php_exam/index.php");
+        }else{
+            echo "You Already have this article in your cart";
+            ?>
+            <a href="index.php">Return to home</a>
+            <?php
+        }
+    }else{
+        header("Location: http://localhost/php_exam/index.php");
+    }
+?>
