@@ -27,6 +27,9 @@ if(isset($_GET["id"])){
     <a href="edit.php?id=<?php echo $infoArticle['id']; ?>">
         <p>Edit Article</p>
     </a>   
+    <a href="deleteArticle.php?id=<?php echo $infoArticle['id']; ?>">
+        <p>Delete Article</p>
+    </a>   
 <?php
     }else{
     ?>
