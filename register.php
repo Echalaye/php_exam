@@ -74,9 +74,17 @@
     }
 ?>
 <html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link rel="stylesheet" type="text/css" href="register.css">
+</head>
 <body>
-  <!-- bouton pour retourner sur la page login -->
-    <a href="login.php" role="button">login</a>
+<header>
+    <h1>Register</h1>
+    <a href="login.php" role="button">Login</a>
+  </header>
     <!-- affiche le cas ou on a une erreur style nom ou email déjà utilisé -->
     <?php echo $error ?>
     <!--  formulaire de création de compte -->
