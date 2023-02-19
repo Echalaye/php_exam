@@ -100,17 +100,38 @@ if(isset($_COOKIE["pwd"])){
     }
 ?>
 
+<!DOCTYPE html>
 <html>
-    <body>
-      <!-- formulaire pour publier un article -->
-        <form action="sell.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload" required>
-            <input type="text" name="Nameart" placeholder="Enter the name of your article." required>
-            <input type="text" name="Description" placeholder="Enter a description for your article." required>
-            <input type="number" name="Price" placeholder="Enter the price of your article." required>
-            <input type="number" name="Stock" placeholder="Quantity." required>
-            <input type="submit" name="submit">
-        </form>
-    </body>
+<head>
+	<title>Page de vente</title>
+	<link rel="stylesheet" type="text/css" href="sell.css">
+</head>
+<body>
+	<header>
+		<h1>Page de vente</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Cart</a></li>
+				<li><a href="#">Disconnect</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="container">
+		<!-- formulaire pour publier un article -->
+		<form action="sell.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="fileToUpload" id="fileToUpload" required>
+			<input type="text" name="Nameart" placeholder="Enter the name of your article." required>
+			<input type="text" name="Description" placeholder="Enter a description for your article." required>
+			<input type="number" name="Price" placeholder="Enter the price of your article." required>
+			<input type="number" name="Stock" placeholder="Quantity." required>
+			<input type="submit" name="submit">
+		</form>
+	</div>
+
+</body>
 </html>
+
+
 
