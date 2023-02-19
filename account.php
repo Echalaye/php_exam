@@ -1,3 +1,15 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link rel="stylesheet" type="text/css" href="account.css">
+
+</head>
+
+<body>
+    
+
 <?php
 $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
 if(isset($_COOKIE["pwd"])){
@@ -118,3 +130,9 @@ if(isset($_GET["name"])){
     header("Location: http://localhost/php_exam/index.php");
 }
 ?>
+
+
+
+</body>
+
+</html>
