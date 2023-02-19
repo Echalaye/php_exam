@@ -26,7 +26,7 @@ while ($infoArticle = $infoArticles->fetch_assoc()) {
     </div>
 
     <!-- partie qui gère l'affichage du nom, du prix et de l'image de l'article -->
-    <a href="detail.php?id=<?php echo $infoArticle['id']; ?>">
+    <a href="detailGuest.php?id=<?php echo $infoArticle['id']; ?>">
       <h3><?php echo $infoArticle['name']; ?></h3>
       <p><?php echo $infoArticle['prix'], "€"; ?></p>
       <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
