@@ -43,16 +43,9 @@ while ($infoArticle = $infoArticles->fetch_assoc()) {
         </a>
     </div>
 
-    <!-- partie qui gère l'affichage du nom, du prix et de l'image de l'article -->
-    <a href="detail.php?id=<?php echo $infoArticle['id']; ?>">
-      <h3><?php echo $infoArticle['name']; ?></h3>
-      <p><?php echo $infoArticle['prix'], "€"; ?></p>
-      <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
-
-    </a>
     <div>
-        <a href="edit.php?id=<?php echo $artId; ?>">edit</a>
-        <a href="deleteArticle.php?id=<?php echo $artId; ?>">Delete</a>
+        <a href="changeUserInfo.php?name=<?php echo $infoUser['username']; ?>">edit</a>
+        <a href="deleteUser.php?name=<?php echo $infoUser['username']; ?>">Delete</a>
     </div>
     <?php
 }
