@@ -14,13 +14,6 @@ if(isset($_COOKIE["pwd"])){
 }
 ?>
 
-<!-- bout de code qui fait office de bandeau -->
-<div>
-<a href="index.php" role="button">Home</a>
-<a href="cart.php" role="button">Cart</a>
-<a href="disconnect.php" role="button">Disconnect</a>
-</div>
-
 <?php
     $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
 
@@ -111,9 +104,9 @@ if(isset($_COOKIE["pwd"])){
 		<h1>Page de vente</h1>
 		<nav>
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Cart</a></li>
-				<li><a href="#">Disconnect</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="cart.php">Cart</a></li>
+				<li><a href="disconnect.php">Disconnect</a></li>
 			</ul>
 		</nav>
 	</header>
