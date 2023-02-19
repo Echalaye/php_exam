@@ -21,7 +21,9 @@ $hello = "World";
     <img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
 </a>
 <a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
 <a href="disconnect.php" role="button">Disconnect</a>
+
 
 <?php
 $infoArticles = $mysqli->query("SELECT * FROM article ORDER BY datePublie DESC");

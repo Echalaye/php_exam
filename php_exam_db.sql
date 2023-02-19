@@ -26,6 +26,7 @@ CREATE TABLE
         `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
         `idUser` INTEGER,
         `idArticle` INTEGER,
+        `quantity` INTEGER,
         FOREIGN KEY (`idUser`) REFERENCES `user` (`id`),
         FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`)
     );
@@ -46,6 +47,6 @@ CREATE TABLE
     `stock` (
         `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
         `idArticle` INTEGER,
-        `stock` INTEGER,
+        `stok` INTEGER,
         FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`)
     );

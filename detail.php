@@ -48,7 +48,7 @@ if(isset($_GET["id"])){
     <div>
         <p><?php echo $infoArticle['name']; ?></p>
         <p><?php echo $infoArticle['prix'], "€"; ?></p>
-        <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
+        <img src="<?php echo $infoArticle['img'];?>" width="40%" height="40%"  alt="No_image">
         <p><?php echo $infoArticle['description']; ?></p>
         <p><?php echo $infoArticle['datePublie'];?></p>
     </div>  

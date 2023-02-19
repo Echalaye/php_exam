@@ -19,7 +19,7 @@ if(isset($_COOKIE["pwd"])){
         $userId = $accountInfo['id'];
         $infoPanier = $mysqli->query("SELECT * FROM cart WHERE idArticle = '$articleId'");
         if($infoPanier->num_rows == 0){
-            $mysqli->query("INSERT INTO cart(idUser, idArticle) VALUES ('$userId','$articleId')");
+            $mysqli->query("INSERT INTO cart(idUser, idArticle,quantity) VALUES ('$userId','$articleId', 1)");
             header("Location: http://localhost/php_exam/index.php");
         }else{
             echo "You Already have this article in your cart";
