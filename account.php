@@ -26,6 +26,7 @@ if(isset($_COOKIE["pwd"])){
 ?>
 <!-- bout de code qui fait office de bandeau -->
 <div>
+<a href="index.php" role="button">Home</a>
 <a href="sell.php" role="button">Vente</a>
 <a href="cart.php" role="button">Cart</a>
 <a href="disconnect.php" role="button">Disconnect</a>
