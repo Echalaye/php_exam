@@ -14,9 +14,10 @@ $UserAccount = $mysqli->query("SELECT username, pdp FROM user WHERE mdp = '$cook
 $userConnected = $UserAccount->fetch_assoc();
 ?>
 <?php
-if($userConnected["username"] == "admin"){
-    header("Location: http://localhost/php_exam/index.php");
-}
+// $nameUser = $userConnected["username"];
+// if( $nameUser == "admin"){
+//     header("Location: http://localhost/php_exam/index.php");
+// }
 ?>
 
 <div>

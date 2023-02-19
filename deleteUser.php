@@ -13,9 +13,10 @@ if(isset($_COOKIE["pwd"])){
 ?>
 
 <?php
-if($userConnected["username"] == "admin"){
-    header("Location: http://localhost/php_exam/index.php");
-}
+// $nameUser = $userConnected["username"];
+// if( $nameUser == "admin"){
+//     header("Location: http://localhost/php_exam/index.php");
+// }
 ?>
 
 <?php
@@ -25,7 +26,15 @@ if(isset($_GET['name'])){
     $userId = $userId->fetch_assoc();
     $userId = $userId['id'];
     $mysqli->query("DELETE FROM cart WHERE idUser = '$userId'");
-    // $ArticleUser = 
+    $mysqli->query("DELETE FROM invoice WHERE idUser = '$userId'"); 
+    $ArticlesUser = $mysqli->query("SELECT id FROM article WHERE idAuteur = '$userId'");
+    while($ArticleUser = $ArticlesUser->fetch_assoc()){
+        $id = $ArticlesUser['id'];
+        $mysqli->query("DELETE FROM stock WHERE idArticle = '$id");
+        $mysqli->query("DELETE FROM article WHERE id = '$id'");
+    }
+    $mysqli->query("DELETE FROM user WHERE id = '$userId'");
+    header("Location: http://localhost/php_exam/tabUserAdmin.php");
 }else{
     header("Location: http://localhost/php_exam/index.php");
 }
