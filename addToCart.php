@@ -13,6 +13,7 @@ if(isset($_COOKIE["pwd"])){
     header("Location: http://localhost/php_exam/indexGuest.php");
 }
 ?>
+
 <?php
     if(isset($_GET['id'])){
         $articleId = $_GET['id'];
@@ -23,7 +24,9 @@ if(isset($_COOKIE["pwd"])){
             header("Location: http://localhost/php_exam/index.php");
         }else{
             echo "You Already have this article in your cart";
+
             ?>
+            <!-- affiche sur l'écran l'erreur avec un bouton pour retourner au menu (erreur = on a déjà l'article dans notre panier) -->
             <a href="index.php">Return to home</a>
             <?php
         }

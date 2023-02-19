@@ -13,6 +13,13 @@ if(isset($_COOKIE["pwd"])){
     header("Location: http://localhost/php_exam/indexGuest.php");
 }
 ?>
+<!-- bout de code qui fait office de bandeau -->
+<div>
+<a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="disconnect.php" role="button">Disconnect</a>
+</div>
+
 <?php
 if(isset($_GET["name"])){
     $accountName = $_GET["name"];
@@ -103,6 +110,7 @@ if(isset($_GET["name"])){
 ?>
 <html>
 <body>
+  <!-- formulaire pour changer notre pdp ou notre mdp ou notre addmail on peux en changer autant qu'on veux d'un coup il n'est pas obligatoir de tous les changer -->
     <form action="changeUserInfo.php?name=<?php echo $accountInfo["username"]; ?>" method="post" enctype="multipart/form-data">
         <input type="file" name="newPdp" id="fileToUpload">
         <input type="text" name="newEmail" placeholder="Enter your email.">

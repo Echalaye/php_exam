@@ -75,8 +75,11 @@
 ?>
 <html>
 <body>
+  <!-- bouton pour retourner sur la page login -->
     <a href="login.php" role="button">login</a>
+    <!-- affiche le cas ou on a une erreur style nom ou email déjà utilisé -->
     <?php echo $error ?>
+    <!--  formulaire de création de compte -->
     <form action="register.php" method="post" enctype="multipart/form-data">
         <input type="file" name="fileToUpload" id="fileToUpload" required>
         <input type="text" name="userName" placeholder="Enter your name." required>

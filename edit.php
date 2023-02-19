@@ -13,6 +13,12 @@ if(isset($_COOKIE["pwd"])){
     header("Location: http://localhost/php_exam/indexGuest.php");
 }
 ?>
+<!-- bout de code qui fait office de bandeau -->
+<div>
+<a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="disconnect.php" role="button">Disconnect</a>
+</div>
 
 <?php
 if(isset($_GET["id"])){
@@ -93,7 +99,7 @@ if(isset($_GET["id"])){
     header("Location: http://localhost/php_exam/index.php");
 }
 ?>
-
+<!-- formulaire pour modifier l'article que l'on vend, on peux changer chaque chose indépendament des autres -->
 <html>
 <body>
     <form action="edit.php?id=<?php echo $artId; ?>" method="post" enctype="multipart/form-data">

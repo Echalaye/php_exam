@@ -14,6 +14,12 @@ if(isset($_COOKIE["pwd"])){
 }
 ?>
 
+<!-- bout de code qui fait office de bandeau -->
+<div>
+<a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="disconnect.php" role="button">Disconnect</a>
+</div>
 
 <?php
 if(isset($_GET["id"])){
@@ -32,6 +38,7 @@ if(isset($_GET["id"])){
 }
 ?>
 
+<!-- formulaire pour ajouter la quantité que l'on veux d'argent a notre solde -->
 <form action="addMoneyToSolde.php?id=<?php echo $accountId; ?>" method="post">
     <input type="number" name="moneyToAdd" placeholder="Select how many you want to add">
     <input type="submit" name="submit">

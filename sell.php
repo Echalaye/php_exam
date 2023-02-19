@@ -1,4 +1,27 @@
 <?php
+$mysqli = new mysqli("localhost", "root", "", "php_exam_db");
+if(isset($_COOKIE["pwd"])){
+    $cookpass = $_COOKIE["pwd"];
+    $trypwd = $mysqli->query("SELECT `mdp` FROM user WHERE `mdp` = '$cookpass'");
+    if($trypwd->num_rows == 0){
+        header("Location: http://localhost/php_exam/indexGuest.php");
+    }else{
+        $accountInfo = $mysqli->query("SELECT * FROM user WHERE `mdp` = '$cookpass'");
+        $accountInfo = $accountInfo->fetch_assoc();
+    }
+}else{
+    header("Location: http://localhost/php_exam/indexGuest.php");
+}
+?>
+
+<!-- bout de code qui fait office de bandeau -->
+<div>
+<a href="index.php" role="button">Home</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="disconnect.php" role="button">Disconnect</a>
+</div>
+
+<?php
     $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
 
     if(isset($_POST["Nameart"])){
@@ -24,6 +47,7 @@
             // Check if file already exists
             if (file_exists($target_file)) {
               echo "Sorry, file already exists.";
+              header("Location: http://localhost/php_exam/sell.php");
               $uploadOk = 0;
             }
             
@@ -67,7 +91,7 @@
         $idart = $ArticleInfo->fetch_assoc();
         $idart = $idart["id"];
         $mysqli->query("INSERT INTO stock(`idArticle`, `stock`) VALUES ('$idart', '$stk')");
-        header("Location: http://localhost/php_exam/");
+        header("Location: http://localhost/php_exam/index.php");
     }else{
         $nameart = "";
         $img = "";
@@ -78,7 +102,8 @@
 
 <html>
     <body>
-        <form action="vente.php" method="post" enctype="multipart/form-data">
+      <!-- formulaire pour publier un article -->
+        <form action="sell.php" method="post" enctype="multipart/form-data">
             <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="text" name="Nameart" placeholder="Enter the name of your article." required>
             <input type="text" name="Description" placeholder="Enter a description for your article." required>

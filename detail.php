@@ -14,6 +14,13 @@ if(isset($_COOKIE["pwd"])){
 }
 ?>
 
+<!-- bout de code qui fait office de bandeau -->
+<div>
+<a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="disconnect.php" role="button">Disconnect</a>
+</div>
+
 <?php
 if(isset($_GET["id"])){
     $articleId = $_GET["id"];
@@ -24,6 +31,7 @@ if(isset($_GET["id"])){
     $infoUser = $infoUser->fetch_assoc();
     if($accountInfo['id'] == $id){
     ?>
+    <!-- bouton afficher dans le cas ou on est sur notre propre article permet de le modifié ou le suprimer -->
     <a href="edit.php?id=<?php echo $infoArticle['id']; ?>">
         <p>Edit Article</p>
     </a>   
@@ -33,18 +41,21 @@ if(isset($_GET["id"])){
 <?php
     }else{
     ?>
+    <!-- bouton afficher dans le cas ou on est sur un article que l'on ne vend pas et dans ce cas on peux l'ajouter au panier -->
     <a href="addToCart.php?id=<?php echo $infoArticle['id']; ?>">
         <p>Add to cart</p>
     </a>
     <?php
     }
     ?>
+    <!-- affiche le nom et la pdp de l'utilisateur qui vend l'article -->
     <div >
         <a href="account.php?name=<?php echo $infoUser['username']; ?>">
             <p><?php echo $infoUser["username"]?></p>
             <img src="<?php echo $infoUser["pdp"]?>" width="3%" height="5%" alt="No_pdp">
         </a>
     </div>
+    <!-- affiche les information de l'article prix nom, description, date publication et image -->
     <div>
         <p><?php echo $infoArticle['name']; ?></p>
         <p><?php echo $infoArticle['prix'], "€"; ?></p>
