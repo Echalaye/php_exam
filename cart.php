@@ -54,10 +54,7 @@ if(isset($_GET['idArt'])){
 <a href="disconnect.php" role="button">Disconnect</a>
 </div>
 
-<!-- bouton pour valider l'achat -->
-<a href="validate.php">
-    <p>Buy</p>
-</a>
+
 
 <!--  partie qui gère l'affichage de chaque article de notre panier -->
 <?php
@@ -71,7 +68,7 @@ if(isset($_GET['idArt'])){
             $idArt = $infoArticle["idAuteur"];
             $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$idArt' ");
             $infoUser = $infoUser->fetch_assoc();
-            $moneyTot += $infoArticle['prix'];
+            $moneyTot += $infoArticle['prix'] * $ArticleCart['quantity'];
             ?>
             
             <div >
@@ -110,6 +107,23 @@ if(isset($_GET['idArt'])){
     }
 ?>
 
+<?php
+    if($accountInfo['solde'] - $moneyTot > 0){
+?>
+<!-- bouton pour valider l'achat -->
+<a href="validate.php">
+    <p>Buy</p>
+</a>
+<?php
+    }else{
+        ?>
+        <!-- message dans le cas ou on a pas asser d'argent -->
+        <p>Add more money on your account to buy</p>
+    <?php    
+    }
+?>
+
 <!-- affichage du total que l'on va payer et de combien on a sur notre compte -->
 <p>Total : <?php echo $moneyTot?>€</p>
 <p>You have <?php echo $accountInfo["solde"]?>€ on your account</p>
+
