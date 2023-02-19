@@ -1,4 +1,3 @@
-
 <?php
 $mysqli = new mysqli("localhost", "root", "", "php_exam_db"); // Connexion à la db "php_exam"
 // si vous avez une erreur ici, remplacez le deuxième "root" par une string vide
@@ -14,36 +13,27 @@ if(isset($_COOKIE["pwd"])){
 $UserAccount = $mysqli->query("SELECT username, pdp FROM user WHERE mdp = '$cookpass'");
 $userConnected = $UserAccount->fetch_assoc();
 ?>
-
-<!-- bout de code qui gère l'affichage de la photo de profil et du nom de l'utilisateur -->
-<a href="account.php?name=<?php echo $userConnected['username']; ?>"> 
-    <p><?php echo $userConnected["username"]?></p>
-    <img src="<?php echo $userConnected["pdp"]?>" width="5%" height="10%" alt="No_pdp">
-</a>
-
-<!-- bout de code qui fait office de bandeau -->
-<div>
-<a href="sell.php" role="button">Vente</a>
-<a href="cart.php" role="button">Cart</a>
 <?php
 if($userConnected["username"] == "admin"){
-    ?>
-    <a href="tabArticleAdmin.php" role="button">Tab All Article</a>
-    <a href="tabUserAdmin.php" role="button">Tab All User</a>
-    <?php
+    header("Location: http://localhost/php_exam/index.php");
 }
 ?>
+
+<div>
+<a href="index.php" role="button">Home</a>
+<a href="sell.php" role="button">Vente</a>
+<a href="cart.php" role="button">Cart</a>
+<a href="tabUserAdmin.php" role="button">Tab All User</a>
 <a href="disconnect.php" role="button">Disconnect</a>
 </div>
 
-
-<!-- bout de code qui gère l'affichage de chaque article -->
 <?php
 $infoArticles = $mysqli->query("SELECT * FROM article ORDER BY datePublie DESC");
 while ($infoArticle = $infoArticles->fetch_assoc()) {
     $id = $infoArticle["idAuteur"];
     $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");
     $infoUser = $infoUser->fetch_assoc();
+    $artId = $infoArticle['id'];
     ?>
     <!-- div qui gère l'affiche du nom et de la photo de profil du user qui a posté l'article -->
     <div >
@@ -60,9 +50,10 @@ while ($infoArticle = $infoArticles->fetch_assoc()) {
       <img src="<?php echo $infoArticle['img'];?>" width="20%" height="20%"  alt="No_image">
 
     </a>
+    <div>
+        <a href="edit.php?id=<?php echo $artId; ?>">edit</a>
+        <a href="deleteArticle.php?id=<?php echo $artId; ?>">Delete</a>
+    </div>
     <?php
 }
 ?>
-
-
-
