@@ -30,7 +30,6 @@ $userConnected = $UserAccount->fetch_assoc();
 <!-- bout de code qui gère l'affichage de chaque article -->
 <?php
 $infoArticles = $mysqli->query("SELECT * FROM article ORDER BY datePublie DESC");
-
 while ($infoArticle = $infoArticles->fetch_assoc()) {
     $id = $infoArticle["idAuteur"];
     $infoUser = $mysqli->query("SELECT username, pdp  FROM user WHERE id = '$id' ");

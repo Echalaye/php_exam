@@ -47,6 +47,6 @@ CREATE TABLE
     `stock` (
         `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
         `idArticle` INTEGER,
-        `stok` INTEGER,
+        `stock` INTEGER,
         FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`)
     );
